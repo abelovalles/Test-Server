@@ -5,6 +5,7 @@
  */
 package DataBase;
 
+import Config.propertiFile;
 import Logic.client;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -26,10 +27,11 @@ public class connection {
 
     public void con(){
         try {
+            propertiFile properti= new propertiFile();
             Class.forName("com.mysql.jdbc.Driver");
             // Setup the connection with the DB
            connect=DriverManager.getConnection(  
-"jdbc:mysql://localhost:3306/WebServerCrud","root","abel1989"); 
+"jdbc:mysql://"+properti.dbUrl+properti.dbSchema,properti.usuario,properti.contraseña); 
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(connection.class.getName()).log(Level.SEVERE, null, ex);
         }
